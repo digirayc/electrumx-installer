@@ -8,6 +8,15 @@ function check_pyrocksdb {
     $python -B -c "import rocksdb"
 }
 
+function install_pip {
+		
+	if $python -m pip3 > /dev/null 2>&1; then
+		_info "Found installed pip3 for $python"
+	else
+		_error "Unable to find pip3"
+	fi
+}
+
 function install_electrumx {
 	_DIR=$(pwd)
 	rm -rf "/tmp/electrumx/"
@@ -31,15 +40,6 @@ function install_electrumx {
 		_error "Unable to install electrumx" 7
 	fi
 	cd $_DIR
-}
-
-function install_pip {
-		
-	if $python -m pip3 > /dev/null 2>&1; then
-		_info "Found installed pip3 for $python"
-	else
-		_error "Unable to find pip3"
-	fi
 }
 
 function install_pyrocksdb {
