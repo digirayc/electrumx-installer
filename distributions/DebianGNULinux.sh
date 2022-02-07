@@ -8,7 +8,6 @@ fi
 . distributions/base-conda.sh
 . distributions/base-compile-rocksdb.sh
 
-
 APT="apt-get"
 
 function install_leveldb {
