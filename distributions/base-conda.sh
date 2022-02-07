@@ -14,3 +14,4 @@ function install_python39 {
 	install_compiler
 	apt install python3-venv && python3 -m install pip 
 	ln -s /opt/python/bin/python3 /usr/local/bin/python3.9
+}
