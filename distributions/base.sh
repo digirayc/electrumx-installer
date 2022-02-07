@@ -12,7 +12,7 @@ APT="apt"
 
 function install_pip {
 	$APT install python3-pip
-	if $python -m pip3 > /dev/null 2>&1; then
+	if $python -m pip > /dev/null 2>&1; then
 		_info "Installed pip3 for $python"
 	else
 		_error "Unable to install pip3"
