@@ -166,18 +166,18 @@ if [ $UPDATE_ONLY == 0 ] || [ $UPDATE_PYTHON == 1 ]; then
 	_status "Creating database directory in $DB_DIR"
 	create_db_dir $DB_DIR
 
-	if [[ $($python -V 2>&1) == *"Python 3.6"* ]] > /dev/null 2>&1 && [ $UPDATE_PYTHON == 0 ]; then
-		_info "Python 3.6 is already installed."
-	elif [[ $($python -V 2>&1) == *"Python 3.7"* ]] > /dev/null 2>&1; then
-		_info "Python 3.7 is already installed."
+	if [[ $($python -V 2>&1) == *"Python 3.8"* ]] > /dev/null 2>&1 && [ $UPDATE_PYTHON == 0 ]; then
+		_info "Python 3.8 is already installed."
+	elif [[ $($python -V 2>&1) == *"Python 3.9"* ]] > /dev/null 2>&1; then
+		_info "Python 3.9 is already installed."
 	else
-		_status "Installing Python 3.7"
-		python=python3.7
-		install_python37
-		if [[ $($python -V 2>&1) == *"Python 3.7"* ]] > /dev/null 2>&1; then
-			_info "Python 3.7 successfully installed"
+		_status "Installing Python 3.9"
+		python=python3.9
+		install_python39
+		if [[ $($python -V 2>&1) == *"Python 3.9"* ]] > /dev/null 2>&1; then
+			_info "Python 3.9 successfully installed"
 		else
-			_error "Unable to install Python 3.7" 4
+			_error "Unable to install Python 3.9" 4
 		fi
 	fi
 	
