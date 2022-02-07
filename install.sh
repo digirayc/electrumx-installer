@@ -219,9 +219,9 @@ if [ $UPDATE_ONLY == 0 ] || [ $UPDATE_PYTHON == 1 ]; then
                 _error "pyrocksdb installation doesn't work" 6
             fi
 		fi
-	else
-		_status "Installing leveldb"
-		install_leveldb
+#	else
+#		_status "Installing leveldb"
+#		install_leveldb
 	fi
 
 	_status "Installing electrumx"
