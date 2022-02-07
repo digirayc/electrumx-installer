@@ -12,6 +12,6 @@ function install_python39 {
 		_error "install_compiler needs to be declared in order to use conda/install_python39" 3
 	fi
 	install_compiler
-	apt install python3-venv && python3 -m install pip 
+	$APT install python3-venv && python3 -m install pip 
 	ln -s /opt/python/bin/python3 /usr/local/bin/python3.9
 }
