@@ -7,6 +7,8 @@ function install_electrumx {
 	ln -s /opt/python/bin/electrumx* /usr/local/bin/
 }
 
+APT="apt"
+
 function install_python39 {
 	if ! declare -f install_compiler > /dev/null; then
 		_error "install_compiler needs to be declared in order to use conda/install_python39" 3
