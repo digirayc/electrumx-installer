@@ -8,12 +8,14 @@ function check_pyrocksdb {
     $python -B -c "import rocksdb"
 }
 
+APT="apt"
+
 function install_pip {
-		
+	$APT install python3-pip
 	if $python -m pip3 > /dev/null 2>&1; then
-		_info "Found installed pip3 for $python"
+		_info "Installed pip3 for $python"
 	else
-		_error "Unable to find pip3"
+		_error "Unable to install pip3"
 	fi
 }
 
