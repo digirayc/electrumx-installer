@@ -10,7 +10,7 @@ function install_script_dependencies {
 }
 
 function install_rocksdb_dependencies {
-	$APT install -y libsnappy-dev zlib1g-dev libbz2-dev libgflags-dev librocksdb-dev || _error "Could not install packages"
+	$APT install -y libsnappy-dev zlib1g-dev libbz2-dev libgflags-dev || _error "Could not install packages"
 }
 
 function install_compiler {
