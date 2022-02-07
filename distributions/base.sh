@@ -34,13 +34,11 @@ function install_electrumx {
 }
 
 function install_pip {
-	wget https://bootstrap.pypa.io/get-pip.py -O /tmp/get-pip.py
-	$python /tmp/get-pip.py
-	rm /tmp/get-pip.py
-	if $python -m pip > /dev/null 2>&1; then
-		_info "Installed pip to $python"
+		
+	if $python -m pip3 > /dev/null 2>&1; then
+		_info "Found installed pip3 for $python"
 	else
-		_error "Unable to install pip"
+		_error "Unable to find pip3"
 	fi
 }
 
