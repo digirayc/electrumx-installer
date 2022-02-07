@@ -5,8 +5,9 @@ fi
 . distributions/base.sh
 . distributions/base-systemd.sh
 . distributions/base-debianoid.sh
-. distributions/base-compile-rocksdb.sh
 . distributions/base-conda.sh
+. distributions/base-compile-rocksdb.sh
+
 
 APT="apt-get"
 
