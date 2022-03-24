@@ -1,7 +1,7 @@
 APT="apt"
 
 function install_git {
-	$APT install -y git unzip || _error "Could not install packages"
+	$APT install -y git unzip liblz4-dev || _error "Could not install packages"
 }
 
 function install_script_dependencies {
