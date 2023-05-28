@@ -10,7 +10,7 @@ UPDATE_ONLY=0
 UPDATE_PYTHON=0
 VERBOSE=0
 USE_ROCKSDB=1
-ELECTRUMX_GIT_URL="https://github.com/spesmilo/electrumx"
+ELECTRUMX_GIT_URL="https://github.com/digirayc/electrumx"
 ELECTRUMX_GIT_BRANCH=""
 
 installer=$(realpath $0)
@@ -22,8 +22,8 @@ if which git > /dev/null 2>&1; then
     _version_now=$(git rev-parse HEAD)
     git pull > /dev/null 2>&1
     if [ $_version_now != $(git rev-parse HEAD) ]; then
-        echo "Updated installer."
-        exec $installer "$@"
+	echo "Updated installer."
+	exec $installer "$@"
     fi
 fi
 
@@ -89,11 +89,11 @@ fi
 
 
 function _error {
-        if [ -s /tmp/electrumx-installer-$$.log ]; then
+	if [ -s /tmp/electrumx-installer-$$.log ]; then
 	  echo -en "\n---- LOG OUTPUT BELOW ----\n" >&4
 	  tail -n 50 /tmp/electrumx-installer-$$.log >&4
 	  echo -en "\n---- LOG OUTPUT ABOVE ----\n" >&4
-        fi
+	fi
 	printf "\r${RED}ERROR:${NC}   ${1}\n" >&4
 	if (( ${2:--1} > -1 )); then
 		exit $2
@@ -180,7 +180,7 @@ if [ $UPDATE_ONLY == 0 ] || [ $UPDATE_PYTHON == 1 ]; then
 			_error "Unable to install Python 3.9" 4
 		fi
 	fi
-	
+
 
 	_status "Installing git"
 	install_git
@@ -193,13 +193,13 @@ if [ $UPDATE_ONLY == 0 ] || [ $UPDATE_PYTHON == 1 ]; then
 
 	if [ $USE_ROCKSDB == 1 ]; then
 	    _progress_total=$(( $_progress_total + 3 ))
-        _status "Installing RocksDB"
-        if [ ! -z $has_rocksdb_binary ]; then
-            binary_install_rocksdb
-        else
-            install_rocksdb
-        fi
-            if [ -z $newer_rocksdb ]; then
+	_status "Installing RocksDB"
+	if [ ! -z $has_rocksdb_binary ]; then
+	    binary_install_rocksdb
+	else
+	    install_rocksdb
+	fi
+	    if [ -z $newer_rocksdb ]; then
 			    _status "Installing pyrocksdb"
 			install_pyrocksdb
 		else
@@ -208,16 +208,16 @@ if [ $UPDATE_ONLY == 0 ] || [ $UPDATE_PYTHON == 1 ]; then
 		fi
 		_status "Checking pyrocksdb installation"
 		if [ ! check_pyrocksdb ]; then
-            if [ ! -z $has_rocksdb_binary ]; then
-                _status "binary rocksdb doesn't work - compiling instead"
-                binary_uninstall_rocksdb
-                install_rocksdb
-                if [ ! check_pyrocksdb ]; then
-                    _error "pyrocksdb installation still doesn't work" 7
-                fi
-            else
-                _error "pyrocksdb installation doesn't work" 6
-            fi
+	    if [ ! -z $has_rocksdb_binary ]; then
+		_status "binary rocksdb doesn't work - compiling instead"
+		binary_uninstall_rocksdb
+		install_rocksdb
+		if [ ! check_pyrocksdb ]; then
+		    _error "pyrocksdb installation still doesn't work" 7
+		fi
+	    else
+		_error "pyrocksdb installation doesn't work" 6
+	    fi
 		fi
 #	else
 #		_status "Installing leveldb"
@@ -239,7 +239,7 @@ if [ $UPDATE_ONLY == 0 ] || [ $UPDATE_PYTHON == 1 ]; then
 
 	if declare -f package_cleanup > /dev/null; then
 		_status "Cleaning up"
-		package_cleanup	
+		package_cleanup
 	fi
 	_info "electrumx has been installed successfully. Edit /etc/electrumx.conf to configure it."
 else
@@ -249,7 +249,7 @@ else
 	    $python -m pip uninstall -y electrumx || true
 	    ((i++))
 	    if "$i" -gt 5; then
-	        break
+		break
 	    fi
 	done
 	if grep '/usr/local/bin/electrumx_server.py' /etc/systemd/system/electrumx.service; then
@@ -258,5 +258,5 @@ else
 		systemctl daemon-reload
 	fi
 	install_electrumx
-        _info "Installed $($python -m pip freeze | grep -i electrumx)"
+	_info "Installed $($python -m pip freeze | grep -i electrumx)"
 fi

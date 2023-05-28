@@ -5,14 +5,14 @@ if [ -d ~/.electrumx-installer ]; then
     exit 1
 fi
 if which git > /dev/null 2>&1; then
-    git clone https://github.com/MadCatMining/electrumx-installer ~/.electrumx-installer
+    git clone https://github.com/digirayc/electrumx-installer ~/.electrumx-installer
     cd ~/.electrumx-installer/
 else
     which wget > /dev/null 2>&1 && which unzip > /dev/null 2>&1 || { echo "Please install git or wget and unzip" && exit 1 ; }
-    wget https://github.com/MadCatMining/electrumx-installer/archive/master.zip -O /tmp/electrumx-master.zip
+    wget https://github.com/digirayc/electrumx-installer/archive/master.zip -O /tmp/electrumx-master.zip
     unzip /tmp/electrumx-master.zip -d ~/.electrumx-installer
     rm /tmp/electrumx-master.zip
-    cd ~/.electrumx-installer/electrumx-installer-master/ 
+    cd ~/.electrumx-installer/electrumx-installer-master/
 fi
 if [[ $EUID -ne 0 ]]; then
     which sudo > /dev/null 2>&1 || { echo "You need to run this script as root" && exit 1 ; }
